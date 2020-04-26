@@ -25,5 +25,11 @@
     <fragment
         android:id="@+id/navigation_workouts"
         android:name="com.example.fit.ui.workouts.WorkoutsFragment"
-        android:label="@string/title_workouts" />
+        android:label="@string/title_workouts"
+        tools:layout="@layout/fragment_workouts" />
+    <fragment
+        android:id="@+id/navigation_other"
+        android:name="com.example.fit.ui.other.OtherFragment"
+        android:label="@string/title_other"
+        tools:layout="@layout/fragment_other" />
 </navigation>

@@ -4,4 +4,9 @@
     <string name="title_recipes">Recipes</string>
     <string name="title_ingredients">Ingredients</string>
     <string name="title_workouts">Workouts</string>
+    <string name="title_other">Other Options</string>
+    <string name="login"><u>Login!</u></string>
+    <string name="signup"><u>Sign Up!</u></string>
+
+
 </resources>

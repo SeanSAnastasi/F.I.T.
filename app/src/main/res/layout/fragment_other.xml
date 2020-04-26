@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.other.OtherFragment"
+    >
+
+    <LinearLayout
+        android:id="@+id/otherMenuLayout"
+        android:layout_width="318dp"
+        android:layout_height="531dp"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/createRecipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#00FFFFFF"
+            android:tag="createRecipe"
+            android:text="Create Recipe" />
+
+        <Button
+            android:id="@+id/createIngredient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#00FFFFFF"
+            android:tag="createIngredient"
+            android:text="Create Ingredient" />
+
+        <Button
+            android:id="@+id/myRecipes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#00FFFFFF"
+            android:tag="myRecipes"
+            android:text="My Recipes" />
+
+        <Button
+            android:id="@+id/myIngredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#00FFFFFF"
+            android:tag="myIngredients"
+            android:text="My Ingredients" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
