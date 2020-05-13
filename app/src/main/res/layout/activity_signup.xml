@@ -30,6 +30,14 @@
             android:text="Sign Up"
             android:textAlignment="center"
             android:textSize="24sp" />
+        <TextView
+            android:id="@+id/signup_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username is taken by another person"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:textColor="@color/error_color"/>
 
         <EditText
             android:id="@+id/usernameEditText"
@@ -63,7 +71,12 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/button_rounded_corners"
             android:onClick="signUpButtonClicked"
-            android:text="Create Account" />
+            android:text="Create Account"
+            android:textColor="@color/text_color"
+
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,7 +93,7 @@
                 android:text="Already have an account?"
                 android:textAlignment="viewEnd" />
 
-            <TextView
+            <Button
                 android:id="@+id/textView5"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
@@ -90,7 +103,10 @@
                 android:paddingRight="60dp"
                 android:text="@string/login"
                 android:textAlignment="center"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/text_color"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                />
         </LinearLayout>
 
     </LinearLayout>

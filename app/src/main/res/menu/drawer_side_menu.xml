@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/create_recipe"
+            android:title="@string/title_create_recipe" />
+        <item
+            android:id="@+id/create_ingredient"
+            android:title="@string/title_create_ingredient" />
+        <item
+            android:id="@+id/my_recipes"
+            android:title="@string/title_my_recipes" />
+        <item
+            android:id="@+id/my_ingredients"
+            android:title="@string/title_my_ingredients" />
+
+    </group>
+
+
+
+        <item android:title="@string/title_profile">
+
+            <menu>
+                <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/login"
+                    android:title="@string/title_login" />
+                <item
+                    android:id="@+id/signup"
+                    android:title="@string/title_signup" />
+                <item
+                    android:id="@+id/logout"
+                    android:title="@string/title_logout" />
+                </group>
+            </menu>
+
+        </item>
+
+
+
+</menu>

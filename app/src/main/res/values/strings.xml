@@ -4,9 +4,27 @@
     <string name="title_recipes">Recipes</string>
     <string name="title_ingredients">Ingredients</string>
     <string name="title_workouts">Workouts</string>
-    <string name="title_other">Other Options</string>
+    <string name="title_create_recipe">Create Recipe</string>
+    <string name="title_create_ingredient">Create Ingredient</string>
+    <string name="title_my_recipes">My Recipes</string>
+    <string name="title_my_ingredients">My Ingredients</string>
+    <string name="title_other">Options</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_login">Login</string>
+    <string name="title_signup">Signup</string>
+    <string name="title_logout">Logout</string>
     <string name="login"><u>Login!</u></string>
     <string name="signup"><u>Sign Up!</u></string>
+    <string name="slogan">Find The Fun In Training!</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+<!--    Tags-->
+    <string name="fragment_home_tag">Fragment Home</string>
+    <string name="fragment_ingredients_tag">Fragment Ingredients</string>
+    <string name="fragment_recipes_tag">Fragment Recipes</string>
+    <string name="fragment_workouts_tag">Fragment Workouts</string>
+    <string name="fragment_recipe_details_tag">Fragment Recipe Details</string>
 
 
 </resources>

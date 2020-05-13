@@ -7,29 +7,24 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.fit.ui.home.HomeFragment"
+        android:name="com.anastasi.fit.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_recipes"
-        android:name="com.example.fit.ui.recipes.RecipesFragment"
+        android:name="com.anastasi.fit.ui.recipes.RecipesFragment"
         android:label="@string/title_recipes"
         tools:layout="@layout/fragment_recipes" />
 
     <fragment
         android:id="@+id/navigation_ingredients"
-        android:name="com.example.fit.ui.ingredients.IngredientsFragment"
+        android:name="com.anastasi.fit.ui.ingredients.IngredientsFragment"
         android:label="@string/title_ingredients"
         tools:layout="@layout/fragment_ingredients" />
     <fragment
         android:id="@+id/navigation_workouts"
-        android:name="com.example.fit.ui.workouts.WorkoutsFragment"
+        android:name="com.anastasi.fit.ui.workouts.WorkoutsFragment"
         android:label="@string/title_workouts"
         tools:layout="@layout/fragment_workouts" />
-    <fragment
-        android:id="@+id/navigation_other"
-        android:name="com.example.fit.ui.other.OtherFragment"
-        android:label="@string/title_other"
-        tools:layout="@layout/fragment_other" />
 </navigation>

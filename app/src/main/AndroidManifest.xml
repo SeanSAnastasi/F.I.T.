@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.fit">
+    package="com.anastasi.fit">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_transparent"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo_transparent"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".InitialActivity"
-            android:label="@string/app_name">
+            android:name="com.anastasi.fit.InitialActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,37 +25,44 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:name="com.anastasi.fit.MainActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan">
 
         </activity>
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/app_name">
+            android:name="com.anastasi.fit.LoginActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan">
 
         </activity>
         <activity
-            android:name=".SignUpActivity"
-            android:label="@string/app_name">
+            android:name="com.anastasi.fit.SignUpActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan">
 
         </activity>
         <activity
-            android:name=".CreateRecipeActivity"
-            android:label="@string/app_name">
+            android:name="com.anastasi.fit.CreateRecipeActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan">
 
         </activity>
         <activity
-            android:name=".CreateIngredientActivity"
-            android:label="@string/app_name">
+            android:name="com.anastasi.fit.CreateIngredientActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan">
 
         </activity>
         <activity
-            android:name=".MyIngredientsActivity"
-            android:label="@string/app_name">
+            android:name="com.anastasi.fit.MyIngredientsActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan">
 
         </activity><activity
-            android:name=".MyRecipesActivity"
-            android:label="@string/app_name">
+            android:name="com.anastasi.fit.MyRecipesActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan">
 
         </activity>
     </application>

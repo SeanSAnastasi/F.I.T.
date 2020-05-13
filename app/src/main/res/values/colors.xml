@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#9CEADA</color>
+    <color name="colorPrimaryDark">#9950E8C9</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="bgColor">#9CEADA</color>
     <color name="menu_button">#00FFFFFF</color>
+    <color name="text_color">#8a000000</color>
+    <color name="error_color">#8AF31A1A</color>
 </resources>
