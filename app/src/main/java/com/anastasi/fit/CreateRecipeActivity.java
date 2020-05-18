@@ -103,9 +103,9 @@ public class CreateRecipeActivity extends AppCompatActivity {
 
             SQLiteDatabase db = this.openOrCreateDatabase("FIT", Context.MODE_PRIVATE, null);
             // creates table for nutritional values of ingredient if the table does not exist
-            db.execSQL("CREATE TABLE IF NOT EXISTS recipe_values (id INT PRIMARY KEY, ingredient_id INT, recipe_id INT)");
+            db.execSQL("CREATE TABLE IF NOT EXISTS recipe_values (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ingredient_id INT,ingredient_amount VARCHAR, recipe_id INT)");
             // creates table for ingredient if the table does not exist
-            db.execSQL("CREATE TABLE IF NOT EXISTS recipes (id INT PRIMARY KEY, title VARCHAR, cooking_method VARCHAR, image BLOB)");
+            db.execSQL("CREATE TABLE IF NOT EXISTS recipes (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title VARCHAR, cooking_method VARCHAR, image BLOB)");
             //insert values into database
             ContentValues contentValues = new ContentValues();
             contentValues.put("title",title);
@@ -127,9 +127,10 @@ public class CreateRecipeActivity extends AppCompatActivity {
                 //insert values into recipe_values
                 for(int i = 0; i<valuesLinearLayout.getChildCount();i++){
                     LinearLayout layout = (LinearLayout) valuesLinearLayout.getChildAt(i);
+                    //todo: create dropdown for ingredient values
 //                    String nutritionalValueTitle = ((EditText)layout.getChildAt(0)).getText().toString();
 //                    String nutritionalValueAmount = ((EditText)layout.getChildAt(1)).getText().toString();
-                    //db.execSQL("INSERT INTO recipe_values (ingredient_id, nutritional_value_title, nutritional_value_amount) VALUES("+ingredientId+",'"+nutritionalValueTitle+"','"+nutritionalValueAmount+"')");
+//                    db.execSQL("INSERT INTO recipe_values (ingredient_id, nutritional_value_title, nutritional_value_amount) VALUES("+ingredientId+",'"+nutritionalValueTitle+"','"+nutritionalValueAmount+"')");
                 }
                 goToPage(MainActivity.class);
             }else{

@@ -94,9 +94,9 @@ public class CreateIngredientActivity extends AppCompatActivity {
 
             SQLiteDatabase db = this.openOrCreateDatabase("FIT", Context.MODE_PRIVATE, null);
         // creates table for nutritional values of ingredient if the table does not exist
-            db.execSQL("CREATE TABLE IF NOT EXISTS ingredient_values (id INT PRIMARY KEY, ingredient_id INT, nutritional_value_title VARCHAR, nutritional_value_amount VARCHAR)");
+            db.execSQL("CREATE TABLE IF NOT EXISTS ingredient_values (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ingredient_id INT, nutritional_value_title VARCHAR, nutritional_value_amount VARCHAR)");
         // creates table for ingredient if the table does not exist
-            db.execSQL("CREATE TABLE IF NOT EXISTS ingredients (id INT PRIMARY KEY, title VARCHAR, description VARCHAR, image BLOB)");
+            db.execSQL("CREATE TABLE IF NOT EXISTS ingredients (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title VARCHAR, description VARCHAR, image BLOB)");
         //insert values into database
             ContentValues contentValues = new ContentValues();
             contentValues.put("title",title);

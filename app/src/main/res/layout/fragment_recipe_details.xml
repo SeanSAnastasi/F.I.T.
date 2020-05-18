@@ -20,13 +20,14 @@
 
             <ImageView
                 android:id="@+id/recipe_details_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/icons8_apple_100" />
+                app:srcCompat="@drawable/icons8_apple_100"
+                />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical">
@@ -38,13 +39,15 @@
                     android:layout_weight="1"
                     android:text="Title"
                     android:textAlignment="center"
-                    android:textAppearance="?attr/textAppearanceHeadline6"/>
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:paddingBottom="4dp"
+                    android:paddingTop="4dp"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/eat_meal"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="match_parent"
-                    android:layout_height="36dp"
+                    android:layout_height="34dp"
                     android:layout_marginEnd="4dp"
                     android:text="Eat Meal"
                     android:textSize="12sp" />
@@ -62,6 +65,53 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/values_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
+
+        <TextView
+            android:id="@+id/cooking_method_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:text="TextView"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"/>
+
+        <LinearLayout
+            android:id="@+id/end_buttons_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/bottom_eat_meal"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="4dp"
+                android:text="Eat Meal"
+                android:textSize="12sp"
+                android:layout_weight="1"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/bottom_add_to_favourites"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:insetTop="2dp"
+                android:insetBottom="2dp"
+                android:text="Add to favourites"
+                android:textSize="12sp"
+                app:iconPadding="2dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

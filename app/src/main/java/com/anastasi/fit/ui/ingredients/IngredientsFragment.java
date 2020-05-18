@@ -26,10 +26,15 @@ import com.anastasi.fit.R;
 
 import org.w3c.dom.Text;
 
-public class IngredientsFragment extends Fragment implements View.OnClickListener {
+import java.util.ArrayList;
+
+public class IngredientsFragment extends Fragment {
 
     private IngredientsViewModel ingredientsViewModel;
-
+    Bitmap bmp;
+    String titleText;
+    String description;
+    ArrayList values;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         ingredientsViewModel = ViewModelProviders.of(this).get(IngredientsViewModel.class);
@@ -47,12 +52,12 @@ public class IngredientsFragment extends Fragment implements View.OnClickListene
             int titleIndex = c.getColumnIndex("title");
             int descIndex = c.getColumnIndex("description");
             int imgIndex = c.getColumnIndex("image");
-
+            int idIndex = c.getColumnIndex("id");
             c.moveToFirst();
             while(c!=null){
                 //get image
                 byte[] imageByte = c.getBlob(imgIndex);
-                Bitmap bmp = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
+                bmp = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
                 bmp=Bitmap.createScaledBitmap(bmp, 100 ,100, true);
 
                 //create card
@@ -61,39 +66,21 @@ public class IngredientsFragment extends Fragment implements View.OnClickListene
                 ImageView imageView = card.findViewById(R.id.card_image);
                 imageView.setImageBitmap(bmp);
                 //set title
+                titleText = c.getString(titleIndex);
                 TextView title = card.findViewById(R.id.card_title);
-                title.setText(c.getString(titleIndex));
+                title.setText(titleText);
                 //set description
+                description = c.getString(descIndex);
                 TextView desc = card.findViewById(R.id.card_description);
-                desc.setText(c.getString(descIndex));
+                desc.setText(description);
                 Button action = card.findViewById(R.id.card_action);
                 action.setText("Use in recipe");
 
-                card.setOnClickListener(this);
+                setOnClick(card, c.getInt(idIndex));
 
                 linearLayout.addView(card, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-                ///////////////////////
-//                TextView titleTextView = new TextView(getActivity());
-//                TextView descriptionTextView = new TextView(getActivity());
-//                ImageView imageView = new ImageView(getActivity());
-//                titleTextView.setText(c.getString(titleIndex));
-//                descriptionTextView.setText(c.getString(descIndex));
-//
-//
-//
-//
-//                //create horizontal layout
-//
-//                LinearLayout horLayout = new LinearLayout(getActivity());
-//                horLayout.setOrientation(LinearLayout.HORIZONTAL);
-//                horLayout.addView(imageView);
-//                horLayout.addView(titleTextView);
-//
-//                //add to vertical layout
-//
-//                linearLayout.addView(horLayout);
-//                linearLayout.addView(descriptionTextView);
+
 
 
                 c.moveToNext();
@@ -113,12 +100,21 @@ public class IngredientsFragment extends Fragment implements View.OnClickListene
 
         return root;
     }
-    @Override
-    public void onClick(View v) {
-        Fragment details = new IngredientDetailsFragment();
-        IMainActivity iMainActivity = (IMainActivity) getActivity();
 
-        iMainActivity.inflateFragment(details, getString(R.string.fragment_recipe_details_tag), true, null);
-
+    public void setOnClick(View card, final int id){
+        card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IngredientDetailsFragment details = new IngredientDetailsFragment();
+                details.setTitle(titleText);
+                details.setImg(bmp);
+                details.setDescription(description);
+                details.setId(id);
+                IMainActivity iMainActivity = (IMainActivity) getActivity();
+                iMainActivity.inflateFragment(details, getString(R.string.fragment_recipe_details_tag), true, null);
+            }
+        });
     }
+
+
 }

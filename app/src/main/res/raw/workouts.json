@@ -1,0 +1,43 @@
+[
+  {
+    "video":"vc1E5CfRfos",
+    "title":"The PERFECT Home Workout (Sets and Reps Included)",
+    "sets":[
+      "Single leg box squats",
+      "1 1/2 bottomed out squats",
+      "Jump squats"
+    ],
+    "amounts":[
+      "1 minute",
+      "1 minute",
+      "1 minute"
+    ],
+    "reps":"2-3"
+  },
+  {
+    "video":"AhdtowFDKT0",
+    "title":"The Perfect PUSH-UP Workout (3 LEVELS)",
+    "sets":[
+
+    ],
+    "amounts":[
+
+    ],
+    "reps":""
+  },
+  {
+    "video":"c5RmFuhMW3E",
+    "title":"10 MIN Home Workout (NO EQUIPMENT NEEDED!)",
+    "sets":[
+      "Mountain Climbers",
+      "Skier Hops",
+      "Side Kickthroughs"
+    ],
+    "amounts":[
+      "1 minute",
+      "1 minute",
+      "1 minute"
+    ],
+    "reps":"3"
+  }
+]

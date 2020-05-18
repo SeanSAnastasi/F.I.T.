@@ -25,10 +25,12 @@ import com.anastasi.fit.MainActivity;
 import com.anastasi.fit.R;
 import com.anastasi.fit.RecipeDetailsFragment;
 
-public class RecipesFragment extends Fragment implements View.OnClickListener {
+public class RecipesFragment extends Fragment  {
 
     private RecipesViewModel recipesViewModel;
-
+    Bitmap bmp;
+    String cookingMethod;
+    String titleText;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         recipesViewModel = ViewModelProviders.of(this).get(RecipesViewModel.class);
         View root = inflater.inflate(R.layout.fragment_recipes, container, false);
@@ -44,12 +46,12 @@ public class RecipesFragment extends Fragment implements View.OnClickListener {
             int titleIndex = c.getColumnIndex("title");
             int cookingMethodIndex = c.getColumnIndex("cooking_method");
             int imgIndex = c.getColumnIndex("image");
-
+            int idIndex = c.getColumnIndex("id");
             c.moveToFirst();
             while(c!=null){
                 //get image
                 byte[] imageByte = c.getBlob(imgIndex);
-                Bitmap bmp = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
+                bmp = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
                 bmp=Bitmap.createScaledBitmap(bmp, 100 ,100, true);
 
                 //create card
@@ -58,15 +60,18 @@ public class RecipesFragment extends Fragment implements View.OnClickListener {
                 ImageView imageView = card.findViewById(R.id.card_image);
                 imageView.setImageBitmap(bmp);
                 //set title
+                titleText = c.getString(titleIndex);
                 TextView title = card.findViewById(R.id.card_title);
-                title.setText(c.getString(titleIndex));
+
+                title.setText(titleText);
                 //set description
                 TextView desc = card.findViewById(R.id.card_description);
-                desc.setText(c.getString(cookingMethodIndex));
+                cookingMethod = c.getString(cookingMethodIndex);
+                desc.setText(cookingMethod);
                 Button action = card.findViewById(R.id.card_action);
                 action.setText("Eat Meal");
 
-                card.setOnClickListener(this);
+                setOnClick(card, c.getInt(idIndex));
 
                 linearLayout.addView(card, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
@@ -88,13 +93,21 @@ public class RecipesFragment extends Fragment implements View.OnClickListener {
         return root;
     }
 
-    @Override
-    public void onClick(View v) {
-        Fragment details = new RecipeDetailsFragment();
-        IMainActivity iMainActivity = (IMainActivity) getActivity();
-
-        iMainActivity.inflateFragment(details, getString(R.string.fragment_recipe_details_tag), true, null);
-
+    public void setOnClick(View card, final int id){
+        card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RecipeDetailsFragment details = new RecipeDetailsFragment();
+                details.setTitle(titleText);
+                details.setImg(bmp);
+                details.setCookingMethod(cookingMethod);
+                details.setId(id);
+                IMainActivity iMainActivity = (IMainActivity) getActivity();
+                iMainActivity.inflateFragment(details, getString(R.string.fragment_recipe_details_tag), true, null);
+            }
+        });
     }
+
+
 
 }

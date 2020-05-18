@@ -28,8 +28,11 @@
             android:id="@+id/card_image"
             android:layout_width="match_parent"
             android:layout_height="194dp"
+            android:adjustViewBounds="true"
             android:contentDescription=""
+            android:cropToPadding="false"
             android:scaleType="centerCrop"
+            android:scrollbarAlwaysDrawHorizontalTrack="true"
             app:srcCompat="@drawable/icons8_apple_100" />
 
         <LinearLayout
