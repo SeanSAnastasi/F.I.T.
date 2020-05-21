@@ -31,6 +31,7 @@ import java.io.IOException;
 
 public class CreateRecipeActivity extends AppCompatActivity {
     Bitmap bitmap;
+    String username = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +50,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
         });
 
         SharedPreferences sharedPreferences = this.getSharedPreferences("com.example.fit", Context.MODE_PRIVATE);
-        String username = sharedPreferences.getString("username", "");
+        username = sharedPreferences.getString("username", "");
         String password = sharedPreferences.getString("password", "");
         addViewItem();
     }
@@ -103,14 +104,15 @@ public class CreateRecipeActivity extends AppCompatActivity {
 
             SQLiteDatabase db = this.openOrCreateDatabase("FIT", Context.MODE_PRIVATE, null);
             // creates table for nutritional values of ingredient if the table does not exist
-            db.execSQL("CREATE TABLE IF NOT EXISTS recipe_values (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ingredient_id INT,ingredient_amount VARCHAR, recipe_id INT)");
+            db.execSQL("CREATE TABLE IF NOT EXISTS recipe_values (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ingredient_name VARCHAR,ingredient_amount VARCHAR, recipe_id INT)");
             // creates table for ingredient if the table does not exist
-            db.execSQL("CREATE TABLE IF NOT EXISTS recipes (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title VARCHAR, cooking_method VARCHAR, image BLOB)");
+            db.execSQL("CREATE TABLE IF NOT EXISTS recipes (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title VARCHAR, cooking_method VARCHAR, image BLOB, username VARCHAR)");
             //insert values into database
             ContentValues contentValues = new ContentValues();
             contentValues.put("title",title);
             contentValues.put("cooking_method",description);
             contentValues.put("image",imageInByte);
+            contentValues.put("username", username);
 
             long confirmQuery = db.insert("recipes",null, contentValues);
 
@@ -122,15 +124,15 @@ public class CreateRecipeActivity extends AppCompatActivity {
                 Cursor c = db.rawQuery("SELECT * FROM recipes",null);
                 c.moveToLast();
                 int idIndex = c.getColumnIndex("id");
-                int ingredientId = c.getInt(idIndex);
+                int recipeId = c.getInt(idIndex);
 
                 //insert values into recipe_values
                 for(int i = 0; i<valuesLinearLayout.getChildCount();i++){
                     LinearLayout layout = (LinearLayout) valuesLinearLayout.getChildAt(i);
                     //todo: create dropdown for ingredient values
-//                    String nutritionalValueTitle = ((EditText)layout.getChildAt(0)).getText().toString();
-//                    String nutritionalValueAmount = ((EditText)layout.getChildAt(1)).getText().toString();
-//                    db.execSQL("INSERT INTO recipe_values (ingredient_id, nutritional_value_title, nutritional_value_amount) VALUES("+ingredientId+",'"+nutritionalValueTitle+"','"+nutritionalValueAmount+"')");
+                    String ingredientName = ((EditText)layout.getChildAt(0)).getText().toString();
+                    String ingredientAmount = ((EditText)layout.getChildAt(1)).getText().toString();
+                    db.execSQL("INSERT INTO recipe_values (ingredient_name, ingredient_amount, recipe_id) VALUES('"+ingredientName+"','"+ingredientAmount+"','"+recipeId+"')");
                 }
                 goToPage(MainActivity.class);
             }else{

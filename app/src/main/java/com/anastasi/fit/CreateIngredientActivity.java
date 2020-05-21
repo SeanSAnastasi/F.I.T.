@@ -35,6 +35,7 @@ import java.io.IOException;
 
 public class CreateIngredientActivity extends AppCompatActivity {
     Bitmap bitmap;
+    String username = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -70,7 +71,7 @@ public class CreateIngredientActivity extends AppCompatActivity {
 
         //if user previously logged in this view will not show
         SharedPreferences sharedPreferences = this.getSharedPreferences("com.example.fit", Context.MODE_PRIVATE);
-        String username = sharedPreferences.getString("username", "");
+         username = sharedPreferences.getString("username", "");
         String password = sharedPreferences.getString("password", "");
         addViewItem();
     }
@@ -96,12 +97,13 @@ public class CreateIngredientActivity extends AppCompatActivity {
         // creates table for nutritional values of ingredient if the table does not exist
             db.execSQL("CREATE TABLE IF NOT EXISTS ingredient_values (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ingredient_id INT, nutritional_value_title VARCHAR, nutritional_value_amount VARCHAR)");
         // creates table for ingredient if the table does not exist
-            db.execSQL("CREATE TABLE IF NOT EXISTS ingredients (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title VARCHAR, description VARCHAR, image BLOB)");
+            db.execSQL("CREATE TABLE IF NOT EXISTS ingredients (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title VARCHAR, description VARCHAR, image BLOB, username VARCHAR)");
         //insert values into database
             ContentValues contentValues = new ContentValues();
             contentValues.put("title",title);
             contentValues.put("description",description);
             contentValues.put("image",imageInByte);
+            contentValues.put("username", username);
             //db.execSQL("INSERT INTO ingredients (title,description,image) VALUES('"+title+"','"+description+"','"+imageInByte+"')");
             long confirmQuery = db.insert("ingredients",null, contentValues);
 

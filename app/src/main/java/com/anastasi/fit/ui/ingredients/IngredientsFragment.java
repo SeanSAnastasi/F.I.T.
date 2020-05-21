@@ -73,12 +73,11 @@ public class IngredientsFragment extends Fragment {
                 description = c.getString(descIndex);
                 TextView desc = card.findViewById(R.id.card_description);
                 desc.setText(description);
-                Button action = card.findViewById(R.id.card_action);
-                action.setText("Use in recipe");
+
 
                 setOnClick(card, c.getInt(idIndex));
 
-                linearLayout.addView(card, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                linearLayout.addView(card, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
 
 

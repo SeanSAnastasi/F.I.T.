@@ -35,29 +35,32 @@ public class SignUpActivity extends AppCompatActivity {
         String username = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
         String confirmPassword = confirmPasswordEditText.getText().toString();
-        if(password.equals(confirmPassword)){
-            //Database functions
-            db.execSQL("CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY, username VARCHAR, password VARCHAR)");
-            Cursor c = db.rawQuery("SELECT * FROM users WHERE username='"+username+"'",null);
-            if(c.getCount() == 0){
+        if(validatePassword(password,username)) {
 
-                db.execSQL("INSERT INTO users (username,password) VALUES('"+username+"','"+password+"')");
-                SharedPreferences sharedPreferences = this.getSharedPreferences("com.example.fit", Context.MODE_PRIVATE);
-                sharedPreferences.edit().putString("username",username).apply();
-                sharedPreferences.edit().putString("password",password).apply();
+            if (password.equals(confirmPassword)) {
+                //Database functions
+                db.execSQL("CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY, username VARCHAR, password VARCHAR)");
+                Cursor c = db.rawQuery("SELECT * FROM users WHERE username='" + username + "'", null);
+                if (c.getCount() == 0) {
+
+                    db.execSQL("INSERT INTO users (username,password) VALUES('" + username + "','" + password + "')");
+                    SharedPreferences sharedPreferences = this.getSharedPreferences("com.example.fit", Context.MODE_PRIVATE);
+                    sharedPreferences.edit().putString("username", username).apply();
+                    sharedPreferences.edit().putString("password", password).apply();
 
 
-                goToPage(MainActivity.class);
+                    goToPage(MainActivity.class);
 
-            }else{
-                signupError.setText("Username is taken by another person");
+                } else {
+                    signupError.setText("Username is taken by another person");
+                    signupError.setVisibility(View.VISIBLE);
+                }
+
+
+            } else {
+                signupError.setText("Passwords do not match");
                 signupError.setVisibility(View.VISIBLE);
             }
-
-
-        }else{
-            signupError.setText("Passwords do not match");
-            signupError.setVisibility(View.VISIBLE);
         }
 
 
@@ -71,5 +74,31 @@ public class SignUpActivity extends AppCompatActivity {
         //intent handler
         Intent intent = new Intent(this, whereToGo);
         startActivity(intent);
+    }
+    public boolean validatePassword(String password, String username){
+        if(password.length() < 8){
+            signupError.setText("Password must be at least 8 characters long");
+            signupError.setVisibility(View.VISIBLE);
+            return false;
+        }
+        if(password.toLowerCase().equals(username.toLowerCase())){
+            signupError.setText("Password should not be the same as the username");
+            signupError.setVisibility(View.VISIBLE);
+            return false;
+        }
+        String uppercaseRegex = "(.*[A-Z].*)";
+        if(!password.matches(uppercaseRegex)){
+            signupError.setText("Password should have at least 1 uppercase character");
+            signupError.setVisibility(View.VISIBLE);
+            return false;
+        }
+        String lowercaseRegex = "(.*[a-z].*)";
+        if(!password.matches(lowercaseRegex)){
+            signupError.setText("Password should have at least 1 lowercase character");
+            signupError.setVisibility(View.VISIBLE);
+            return false;
+        }
+
+        return true;
     }
 }

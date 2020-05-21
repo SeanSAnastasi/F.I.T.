@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -51,8 +53,12 @@ public class LoginActivity extends AppCompatActivity {
                 loginError.setText("Incorrect username or password");
                 loginError.setVisibility(View.VISIBLE);
             }
+        }catch (SQLException e){
+            loginError.setText("You must sign up first");
+            loginError.setVisibility(View.VISIBLE);
         }
         catch (Exception e){
+            Log.e("Login Error: " , e.toString());
             loginError.setText("System error!");
             loginError.setVisibility(View.VISIBLE);
         }

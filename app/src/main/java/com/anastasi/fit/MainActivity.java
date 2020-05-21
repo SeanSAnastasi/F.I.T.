@@ -3,6 +3,7 @@ package com.anastasi.fit;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements IMainActivity {
     DrawerLayout drawerLayout;
+     BottomNavigationView navView ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        final BottomNavigationView navView = findViewById(R.id.nav_view);
+         navView = findViewById(R.id.nav_view);
         // set home to initial fragment
 
         Fragment fragment = new HomeFragment();
@@ -156,6 +158,44 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
             menu.findItem(R.id.login).setVisible(false);
             menu.findItem(R.id.signup).setVisible(false);
         }
+
+        checkRedirect();
+
+    }
+
+    private void checkRedirect() {
+
+        if(getIntent().hasExtra("fragment")){
+            String fragment = getIntent().getStringExtra("fragment");
+            String title = getIntent().getStringExtra("title");
+            String details = getIntent().getStringExtra("details");
+            int id = getIntent().getIntExtra("id", -1);
+            Bitmap img = getIntent().getParcelableExtra("img");
+            if(fragment.equals("recipe")){
+                RecipeDetailsFragment detailsFragment = new RecipeDetailsFragment();
+                detailsFragment.setTitle(title);
+                detailsFragment.setImg(img);
+                detailsFragment.setCookingMethod(details);
+                detailsFragment.setId(id);
+                navView.setSelectedItemId(R.id.navigation_recipes);
+                this.inflateFragment(detailsFragment, getString(R.string.fragment_recipe_details_tag), true, null);
+
+            }else if(fragment.equals("ingredient")){
+                IngredientDetailsFragment detailsFragment = new IngredientDetailsFragment();
+                detailsFragment.setTitle(title);
+                detailsFragment.setImg(img);
+                detailsFragment.setDescription(details);
+                detailsFragment.setId(id);
+                navView.setSelectedItemId(R.id.navigation_ingredients);
+                this.inflateFragment(detailsFragment, getString(R.string.fragment_recipe_details_tag), true, null);
+            }else{
+                return;
+            }
+
+
+        }
+
+
 
     }
 

@@ -55,7 +55,7 @@ public class RecipesFragment extends Fragment  {
                 bmp=Bitmap.createScaledBitmap(bmp, 100 ,100, true);
 
                 //create card
-                View card = vi.inflate(R.layout.card, null);
+                View card = inflater.inflate(R.layout.card, null);
                 //set image
                 ImageView imageView = card.findViewById(R.id.card_image);
                 imageView.setImageBitmap(bmp);
@@ -68,12 +68,11 @@ public class RecipesFragment extends Fragment  {
                 TextView desc = card.findViewById(R.id.card_description);
                 cookingMethod = c.getString(cookingMethodIndex);
                 desc.setText(cookingMethod);
-                Button action = card.findViewById(R.id.card_action);
-                action.setText("Eat Meal");
+
 
                 setOnClick(card, c.getInt(idIndex));
 
-                linearLayout.addView(card, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                linearLayout.addView(card, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
 
 

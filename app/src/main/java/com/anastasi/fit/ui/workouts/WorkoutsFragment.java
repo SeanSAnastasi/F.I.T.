@@ -76,7 +76,8 @@ public class WorkoutsFragment extends Fragment {
                 cardTitle.setText(title);
 
                 setOnClick(card, itemObj);
-                linearLayout.addView(card);
+                linearLayout.addView(card, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
             }
 
 
