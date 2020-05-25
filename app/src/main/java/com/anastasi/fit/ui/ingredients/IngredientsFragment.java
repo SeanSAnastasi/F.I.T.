@@ -58,7 +58,7 @@ public class IngredientsFragment extends Fragment {
                 //get image
                 byte[] imageByte = c.getBlob(imgIndex);
                 bmp = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
-                bmp=Bitmap.createScaledBitmap(bmp, 100 ,100, true);
+
 
                 //create card
                 View card = vi.inflate(R.layout.card, null);

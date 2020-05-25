@@ -5,13 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="?attr/actionBarSize">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
 
-        android:layout_marginTop="?attr/actionBarSize">
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,9 +29,10 @@
             <ImageView
                 android:id="@+id/ingredient_details_image"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="130dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/icons8_apple_100"
+                android:scaleType="centerCrop"
                 />
 
             <LinearLayout
@@ -36,29 +45,14 @@
                     android:id="@+id/ingredient_details_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
                     android:text="Title"
                     android:textAlignment="center"
-                    android:textAppearance="?attr/textAppearanceHeadline6"/>
+                    android:textAppearance="?attr/textAppearanceHeadline6" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/eat_meal"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    android:layout_marginEnd="4dp"
-                    android:text="Add to recipe"
-                    android:textSize="12sp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/add_to_favourites"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="34dp"
-                    android:insetTop="2dp"
-                    android:insetBottom="2dp"
-                    android:text="Add to favourites"
-                    android:textSize="12sp"
-                    app:iconPadding="2dp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -68,7 +62,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp"/>
+            android:padding="20dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"/>
 
 
 
@@ -82,36 +78,8 @@
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"/>
 
-        <LinearLayout
-            android:id="@+id/end_buttons_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/bottom_eat_meal"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="0dp"
-                android:layout_height="36dp"
-                android:layout_marginEnd="4dp"
-                android:text="Eat Meal"
-                android:textSize="12sp"
-                android:layout_weight="1"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/bottom_add_to_favourites"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="0dp"
-                android:layout_height="34dp"
-                android:insetTop="2dp"
-                android:insetBottom="2dp"
-                android:text="Add to favourites"
-                android:textSize="12sp"
-                app:iconPadding="2dp"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
 
     </LinearLayout>
-
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

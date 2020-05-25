@@ -64,7 +64,7 @@ public class WorkoutsFragment extends Fragment {
                 JSONObject itemObj = jsonArray.getJSONObject(i);
                 String youtubeID = itemObj.getString("video");
                 String title = itemObj.getString("title");
-                String url = "https://img.youtube.com/vi/"+youtubeID+"/default.jpg";
+                String url = "https://img.youtube.com/vi/"+youtubeID+"/sddefault.jpg";
 
                 ImageView imageView = card.findViewById(R.id.card_image);
 

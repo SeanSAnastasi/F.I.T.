@@ -52,13 +52,14 @@ public class RecipesFragment extends Fragment  {
                 //get image
                 byte[] imageByte = c.getBlob(imgIndex);
                 bmp = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
-                bmp=Bitmap.createScaledBitmap(bmp, 100 ,100, true);
+
 
                 //create card
                 View card = inflater.inflate(R.layout.card, null);
                 //set image
                 ImageView imageView = card.findViewById(R.id.card_image);
                 imageView.setImageBitmap(bmp);
+
                 //set title
                 titleText = c.getString(titleIndex);
                 TextView title = card.findViewById(R.id.card_title);

@@ -5,13 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="?attr/actionBarSize">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
 
-        android:layout_marginTop="?attr/actionBarSize">
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,10 +29,11 @@
             <ImageView
                 android:id="@+id/recipe_details_image"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="130dp"
+
                 android:layout_weight="1"
-                app:srcCompat="@drawable/icons8_apple_100"
-                />
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/icons8_apple_100" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -54,7 +63,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"></LinearLayout>
+            android:layout_marginRight="24dp"
+            android:padding="20dp"/>
 
         <TextView
             android:id="@+id/cooking_method_text_view"
@@ -69,5 +79,5 @@
 
 
     </LinearLayout>
-
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
