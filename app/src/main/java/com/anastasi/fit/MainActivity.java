@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
     }
 
+    //This function is used to check whether the intent came from the My recipes or My ingredients path. therefore requiring to go to the respective details function
     private void checkRedirect() {
 
         if(getIntent().hasExtra("fragment")){
@@ -199,6 +200,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
     }
 
+    // checks whether the drawer was open when the back button was pressed therefore requiring the drawer to be closed
     @Override
     public void onBackPressed() {
 
@@ -210,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
 
     }
-
+    // This function is being used to display a fragment to the designated area
     private void doFragmentTransaction(Fragment fragment, String tag, boolean addToBackStack, ArrayList data){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
@@ -222,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
         transaction.commit();
     }
-
+    //Intent action
     public void goToPage(Class whereToGo){
         //intent handler
         Intent intent = new Intent(this, whereToGo);

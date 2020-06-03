@@ -20,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     SQLiteDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState){
+        //This is where a user can log in once an account has been created.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
@@ -31,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginButtonClicked(View view){
+        //once the login button is pressed, the database is checked to see if a user exists with that username/password combination.
+        // If an account exists the username and password are added to shared preferences signifying that a user is logged in
         EditText usernameEditText = (EditText) findViewById(R.id.usernameEditText);
         EditText passwordEditText = (EditText) findViewById(R.id.passwordEditText);
         String username = usernameEditText.getText().toString();
@@ -67,6 +70,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
+    //Intent actions
     public void signupButton(View view){
         goToPage(SignUpActivity.class);
     }

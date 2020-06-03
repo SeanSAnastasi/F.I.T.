@@ -36,6 +36,8 @@ public class IngredientDetailsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //This view will show the details of a single ingredient namely the title, image, nutritional values and description
+
         View view = inflater.inflate(R.layout.fragment_ingredient_details,container,false);
 
          valuesContainer = (LinearLayout) view.findViewById(R.id.values_container);
@@ -59,6 +61,7 @@ public class IngredientDetailsFragment extends Fragment {
         return view;
     }
 
+    //Getter and setter functions to be used by the IngredientsFragment to pass data to the details fragment
     public void setTitle(String title){
         this.title = title;
     }
@@ -73,6 +76,7 @@ public class IngredientDetailsFragment extends Fragment {
         this.id = id;
     }
 
+    // Uses the variable contents set by the setter functions, gets the nutritional value data (labelled with foreign key) and populates the view with the data gathered
     private void populateValues(){
         db = getActivity().openOrCreateDatabase("FIT", Context.MODE_PRIVATE, null);
         Cursor c = db.rawQuery("SELECT * FROM ingredient_values WHERE ingredient_id="+id,null);

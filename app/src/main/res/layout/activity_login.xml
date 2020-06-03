@@ -25,14 +25,14 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="@string/login_2"
             android:textAlignment="center"
             android:textSize="24sp" />
         <TextView
             android:id="@+id/login_error"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Incorrect username or password"
+            android:text="@string/incorrect_username_or_password"
             android:textAlignment="center"
             android:textSize="14sp"
             android:textColor="@color/error_color"/>
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Username"
+            android:hint="@string/username"
             android:inputType="textPersonName" />
 
         <EditText
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword" />
 
         <Button
@@ -61,7 +61,7 @@
             android:layout_marginTop="20dp"
 
             android:onClick="loginButtonClicked"
-            android:text="Login"
+            android:text="@string/login_2"
             android:textColor="@color/text_color"
 
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif"
-                android:text="Don't have an account?"
+                android:text="@string/don_t_have_an_account"
                 android:textAlignment="viewEnd" />
 
             <Button

@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:contentDescription=""
+
             android:cropToPadding="false"
             android:scaleType="centerCrop"
             android:scrollbarAlwaysDrawHorizontalTrack="true"
@@ -46,7 +46,7 @@
                 android:id="@+id/card_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Title"
+                android:text="@string/title"
                 android:textAlignment="center"
                 android:textAppearance="?attr/textAppearanceHeadline6" />
             <TextView
@@ -54,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Description"
+                android:text="@string/description"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
                 />

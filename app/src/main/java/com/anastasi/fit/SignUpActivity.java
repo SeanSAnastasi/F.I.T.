@@ -18,6 +18,7 @@ public class SignUpActivity extends AppCompatActivity {
     TextView signupError ;
     @Override
     protected void onCreate(Bundle savedInstanceState){
+        //This page allows a user to create an account
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
@@ -28,6 +29,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     }
+    // Performs the required checks to see if valid data is inputted. If correct the data is added to the database, shared preferences are set(signifying that a user is logged in) and an intent to the MainActivity is created
     public void signUpButtonClicked(View view){
         EditText usernameEditText = (EditText) findViewById(R.id.usernameEditText);
         EditText passwordEditText = (EditText) findViewById(R.id.passwordEditText);
@@ -75,6 +77,8 @@ public class SignUpActivity extends AppCompatActivity {
         Intent intent = new Intent(this, whereToGo);
         startActivity(intent);
     }
+
+    //Password string validation function
     public boolean validatePassword(String password, String username){
         if(password.length() < 8){
             signupError.setText("Password must be at least 8 characters long");
@@ -86,6 +90,7 @@ public class SignUpActivity extends AppCompatActivity {
             signupError.setVisibility(View.VISIBLE);
             return false;
         }
+        // makes use of regular expressions
         String uppercaseRegex = "(.*[A-Z].*)";
         if(!password.matches(uppercaseRegex)){
             signupError.setText("Password should have at least 1 uppercase character");

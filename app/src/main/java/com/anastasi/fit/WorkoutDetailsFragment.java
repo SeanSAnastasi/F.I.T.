@@ -53,6 +53,12 @@ public class WorkoutDetailsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        // Inflates a fragment to show workout details and also shows a youtube video player by pierfrancescosoffritti
+        // It also consolidates the youtube data API V3 in order to get description.
+        // Other data like title, reps workouts etc is found in the local JSON file
+        // This has been done with the assumption that at a production level, the youtube videos would be created by ourselves as a company, therefore the description would contain relevant content that we deem necessary
+
         View view = inflater.inflate(R.layout.fragment_workout_details,container,false);
 
         //set youtube video
@@ -100,6 +106,7 @@ public class WorkoutDetailsFragment extends Fragment {
         return view;
     }
 
+    //Getter and setter functions to be used by the RecipesFragment to pass data to the details fragment
     public void setTitle(String title){
         this.title = title;
     }
@@ -108,6 +115,7 @@ public class WorkoutDetailsFragment extends Fragment {
     public void setSets(JSONArray sets){this.sets = sets;}
     public void setAmounts(JSONArray amounts){this.amounts = amounts;}
 
+    //creates the youtube video player
     private View youtubeCreate(View iview){
         View view = iview;
 
@@ -126,15 +134,7 @@ public class WorkoutDetailsFragment extends Fragment {
         return view;
     }
 
-    private View setDescription(View iview){
-        View view = iview;
-
-        //get JSON data from Youtube Data API
-
-
-
-        return view;
-    }
+    // This class if being used to get description data from the youtube data api
     public class DownloadTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -176,6 +176,7 @@ public class WorkoutDetailsFragment extends Fragment {
             return null;
         }
 
+        //formats the JSON data in order to return only what is required i.e. the description
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);

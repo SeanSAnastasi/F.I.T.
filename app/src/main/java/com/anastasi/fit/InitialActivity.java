@@ -13,15 +13,15 @@ public class InitialActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
+        // This is the initial page that users will be greeted with. If the user previously logged in this page will not be displayed
         super.onCreate(savedInstanceState);
-        //Action bar had to be hidden in this way since it is being used for the bottom navigation bar
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.hide();
-        //if user previously logged in this view will not show
+
+        // Login details are stored as shared preferences so that the user does not need to log in every time s/he opens the application
         SharedPreferences sharedPreferences = this.getSharedPreferences("com.example.fit", Context.MODE_PRIVATE);
         String username = sharedPreferences.getString("username","");
         String password = sharedPreferences.getString("password","");
 
+        //if user previously logged in this view will not show
         if(username != "" && password!=""){
             goToPage(MainActivity.class);
         }else{
@@ -30,6 +30,7 @@ public class InitialActivity extends AppCompatActivity {
         }
     }
 
+    //Intent actions
     public void startButton(View view){
         //User wants to use the app without logging in
         goToPage(MainActivity.class);

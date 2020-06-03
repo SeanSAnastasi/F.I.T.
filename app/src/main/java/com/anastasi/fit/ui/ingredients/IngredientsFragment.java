@@ -30,14 +30,15 @@ import java.util.ArrayList;
 
 public class IngredientsFragment extends Fragment {
 
-    private IngredientsViewModel ingredientsViewModel;
+
     Bitmap bmp;
     String titleText;
     String description;
     ArrayList values;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        ingredientsViewModel = ViewModelProviders.of(this).get(IngredientsViewModel.class);
+        //This view shows all of the ingredients inside of the database by means of a material card
+
         View root = inflater.inflate(R.layout.fragment_ingredients, container, false);
 
         //inflate card view
@@ -47,6 +48,7 @@ public class IngredientsFragment extends Fragment {
         LinearLayout linearLayout = root.findViewById(R.id.ingredientsLinearLayout);
 
         try {
+            //Gets data from database
             SQLiteDatabase db = getActivity().openOrCreateDatabase("FIT", Context.MODE_PRIVATE, null);
             Cursor c = db.rawQuery("SELECT * FROM ingredients",null);
             int titleIndex = c.getColumnIndex("title");
@@ -55,8 +57,10 @@ public class IngredientsFragment extends Fragment {
             int idIndex = c.getColumnIndex("id");
             c.moveToFirst();
             while(c!=null){
-                //get image
+
+                //get image bytes
                 byte[] imageByte = c.getBlob(imgIndex);
+                //converts to bitmap
                 bmp = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
 
 
@@ -85,13 +89,13 @@ public class IngredientsFragment extends Fragment {
                 c.moveToNext();
             }
         }catch (SQLiteException e){
-
+            //shows only if database is empty
             TextView titleTextView = new TextView(getActivity());
             titleTextView.setText("Sorry there are no ingredients to show");
             linearLayout.addView(titleTextView);
         }
         catch (Exception e){
-            Log.e("EXCEPTION: ", e.toString());
+            Log.e("Exception", e.toString());
         }
 
 
@@ -100,15 +104,19 @@ public class IngredientsFragment extends Fragment {
         return root;
     }
 
+    //This on click method is added to every card.
+    // A custom on click method was required so that data can be passed to a new fragment therefore passing the necessary db data and reducing database calls
     public void setOnClick(View card, final int id){
         card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //pass data to fragment
                 IngredientDetailsFragment details = new IngredientDetailsFragment();
                 details.setTitle(titleText);
                 details.setImg(bmp);
                 details.setDescription(description);
                 details.setId(id);
+                //inflate fragment from main activity interface
                 IMainActivity iMainActivity = (IMainActivity) getActivity();
                 iMainActivity.inflateFragment(details, getString(R.string.fragment_recipe_details_tag), true, null);
             }

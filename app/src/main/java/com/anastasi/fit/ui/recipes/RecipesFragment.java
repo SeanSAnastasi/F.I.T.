@@ -27,20 +27,26 @@ import com.anastasi.fit.RecipeDetailsFragment;
 
 public class RecipesFragment extends Fragment  {
 
-    private RecipesViewModel recipesViewModel;
+
     Bitmap bmp;
     String cookingMethod;
     String titleText;
+
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        recipesViewModel = ViewModelProviders.of(this).get(RecipesViewModel.class);
+
+        //This view shows all of the recipes inside of the database by means of a material card
+
         View root = inflater.inflate(R.layout.fragment_recipes, container, false);
 
+        //inflate card view
         LayoutInflater vi = (LayoutInflater) getActivity().getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 
         LinearLayout linearLayout = root.findViewById(R.id.recipesLinearLayout);
 
         try {
+            //Gets data from database
             SQLiteDatabase db = getActivity().openOrCreateDatabase("FIT", Context.MODE_PRIVATE, null);
             Cursor c = db.rawQuery("SELECT * FROM recipes",null);
             int titleIndex = c.getColumnIndex("title");
@@ -49,8 +55,9 @@ public class RecipesFragment extends Fragment  {
             int idIndex = c.getColumnIndex("id");
             c.moveToFirst();
             while(c!=null){
-                //get image
+                //get image bytes
                 byte[] imageByte = c.getBlob(imgIndex);
+                //converts to bitmap
                 bmp = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
 
 
@@ -81,27 +88,31 @@ public class RecipesFragment extends Fragment  {
                 c.moveToNext();
             }
         }catch (SQLiteException e){
-
+            //shows only if database is empty
             TextView titleTextView = new TextView(getActivity());
             titleTextView.setText("Sorry there are no recipes to show");
             linearLayout.addView(titleTextView);
         }
         catch (Exception e){
-            Log.e("EXCEPTION: ", e.toString());
+            Log.e("Exception", e.toString());
         }
 
         return root;
     }
 
+    //This on click method is added to every card.
+    // A custom on click method was required so that data can be passed to a new fragment therefore passing the necessary db data and reducing database calls
     public void setOnClick(View card, final int id){
         card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //pass data to fragment
                 RecipeDetailsFragment details = new RecipeDetailsFragment();
                 details.setTitle(titleText);
                 details.setImg(bmp);
                 details.setCookingMethod(cookingMethod);
                 details.setId(id);
+                //inflate fragment from main activity interface
                 IMainActivity iMainActivity = (IMainActivity) getActivity();
                 iMainActivity.inflateFragment(details, getString(R.string.fragment_recipe_details_tag), true, null);
             }

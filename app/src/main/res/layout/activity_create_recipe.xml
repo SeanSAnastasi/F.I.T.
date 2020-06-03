@@ -49,7 +49,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Create Recipe"
+                android:text="@string/create_recipe"
                 android:textAlignment="center"
                 android:textSize="20sp" />
             <EditText
@@ -57,14 +57,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Title"
+                android:hint="@string/title"
                 android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Choose an Image"
+                android:text="@string/choose_an_image"
                 android:textAlignment="center" />
 
             <ImageView
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_rounded_corners"
                 android:onClick="addValue"
-                android:text="Add new value"
+                android:text="@string/add_new_value"
                 android:layout_marginTop="20dp"
                 android:textColor="@color/text_color"
 
@@ -103,7 +103,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@null"
                 android:gravity="top|left"
-                android:hint="Cooking method"
+                android:hint="@string/cooking_method"
                 android:inputType="textMultiLine"
                 android:lines="6"
                 android:overScrollMode="always"
@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_rounded_corners"
                 android:onClick="submitData"
-                android:text="Create Recipe"
+                android:text="@string/create_recipe"
                 android:textColor="@color/text_color"
 
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"

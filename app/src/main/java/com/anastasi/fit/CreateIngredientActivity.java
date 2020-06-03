@@ -39,7 +39,7 @@ public class CreateIngredientActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //these were being used to delete data with every activity load to keep the ingredients fragment from cluttering up
+        //this was being used to delete data with every activity load to keep the ingredients fragment from cluttering up
 //        try {
 //            SQLiteDatabase db = this.openOrCreateDatabase("FIT", Context.MODE_PRIVATE, null);
 //
@@ -48,6 +48,8 @@ public class CreateIngredientActivity extends AppCompatActivity {
 //
 //        }
 
+
+        //This activity is being used to allow a user to create an ingredient item. A form is presented with the ability to input a title, image, description and nutritional values.
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_ingredient);
@@ -75,7 +77,7 @@ public class CreateIngredientActivity extends AppCompatActivity {
         String password = sharedPreferences.getString("password", "");
         addViewItem();
     }
-
+    // Submit button on click
     public void submitData(View view){
         //Initialize Values
 
@@ -146,6 +148,8 @@ public class CreateIngredientActivity extends AppCompatActivity {
         addViewItem();
     }
 
+    // This function is used to allow the user to add additional rows for nutritional data.
+    // Both values were decided to be strings instead of a string and a number to allow for metric values to be added aswell e.g. protein 2g instead of protein 2.
     public void addViewItem(){
         LinearLayout viewLinearLayout = (LinearLayout) findViewById(R.id.valuesLinearLayout);
         LinearLayout newLinearLayout = new LinearLayout(this);
@@ -168,6 +172,8 @@ public class CreateIngredientActivity extends AppCompatActivity {
     public void goHome(View view){
         goToPage(MainActivity.class);
     }
+
+    // From here onwards are all functions to allow for a user to input an image from their gallery
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void openImageGallery(View view){

@@ -39,10 +39,13 @@ import java.net.URL;
 
 public class WorkoutsFragment extends Fragment {
 
-    private WorkoutsViewModel workoutsViewModel;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        workoutsViewModel = ViewModelProviders.of(this).get(WorkoutsViewModel.class);
+
+        //This view shows all data from raw/workouts.json and places them in cards.
+        // A different url is also called to get the thumbnail
+
         View root = inflater.inflate(R.layout.fragment_workouts, container, false);
 
         root = createCards(root);
@@ -51,7 +54,7 @@ public class WorkoutsFragment extends Fragment {
     }
 
     private View createCards(View iroot){
-
+        // function to create the cards that show up in the view
         View root = iroot;
         LinearLayout linearLayout = (LinearLayout) root.findViewById(R.id.workoutsLinearLayout);
         LayoutInflater vi = (LayoutInflater) getActivity().getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -92,6 +95,7 @@ public class WorkoutsFragment extends Fragment {
 
 
     private String readJSONDataFromFile() throws IOException {
+        //This function is being used to get JSON data from raw/workouts.json and turns it into usable data.
         InputStream inputStream = null;
         StringBuilder builder = new StringBuilder();
 
@@ -111,7 +115,7 @@ public class WorkoutsFragment extends Fragment {
         }
         return new String(builder);
     }
-
+   // This function is being used to pass the necessary data from this fragment to the WorkoutDetailsFragment
    private void setOnClick(View card, final JSONObject itemObj){
        card.setOnClickListener(new View.OnClickListener() {
            @Override

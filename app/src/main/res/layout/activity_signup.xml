@@ -27,14 +27,14 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign Up"
+            android:text="@string/sign_up_2"
             android:textAlignment="center"
             android:textSize="24sp" />
         <TextView
             android:id="@+id/signup_error"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Username is taken by another person"
+            android:text="@string/username_is_taken_by_another_person"
             android:textAlignment="center"
             android:textSize="14sp"
             android:textColor="@color/error_color"/>
@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Username"
+            android:hint="@string/username"
             android:inputType="textPersonName" />
 
         <EditText
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword" />
 
         <EditText
@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Confirm Password"
+            android:hint="@string/confirm_password"
             android:inputType="textPassword" />
 
         <Button
@@ -71,7 +71,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/button_rounded_corners"
             android:onClick="signUpButtonClicked"
-            android:text="Create Account"
+            android:text="@string/create_account"
             android:textColor="@color/text_color"
 
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif"
-                android:text="Already have an account?"
+                android:text="@string/already_have_an_account"
                 android:textAlignment="viewEnd" />
 
             <Button

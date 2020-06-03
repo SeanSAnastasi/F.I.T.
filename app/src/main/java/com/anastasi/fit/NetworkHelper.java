@@ -19,6 +19,8 @@ public class NetworkHelper extends AsyncTask<String, Void, Bitmap> {
         this.bmImage = bmImage;
     }
 
+    //This class is being used to get online images asynchronously. Alternative methods have also been shown to performing the same task when getting json data
+
     @Override
     protected void onPreExecute() {
         // TODO Auto-generated method stub

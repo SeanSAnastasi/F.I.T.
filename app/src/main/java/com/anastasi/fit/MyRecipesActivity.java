@@ -28,6 +28,7 @@ public class MyRecipesActivity extends AppCompatActivity {
     String titleText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // this is used to show all of the recipes created by a specific username or by when the username is blank(therefore meaning that the recipe was created without being logged in and is local to the phone)
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_recipes);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
@@ -101,6 +102,13 @@ public class MyRecipesActivity extends AppCompatActivity {
 
     }
 
+    public void goToPage(Class whereToGo){
+        //intent handler
+        Intent intent = new Intent(this, whereToGo);
+        startActivity(intent);
+    }
+
+    //The on click of this card should use an intent to go to the main activity and set extras to notify the main activity that it should inflate the details fragment with the data given
     public void setOnClick(View card, final int id){
         card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,11 +122,7 @@ public class MyRecipesActivity extends AppCompatActivity {
             }
         });
     }
-    public void goToPage(Class whereToGo){
-        //intent handler
-        Intent intent = new Intent(this, whereToGo);
-        startActivity(intent);
-    }
+
     public void goToPageWithFunction(Class whereToGo,  String title, Bitmap img, String details, int id){
 
         Intent intent = new Intent(this, whereToGo);

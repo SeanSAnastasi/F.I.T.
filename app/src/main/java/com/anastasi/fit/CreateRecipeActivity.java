@@ -34,6 +34,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
     String username = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //This activity is being used to allow a user to create an recipe item. A form is presented with the ability to input a title, image, cooking method and ingredient values.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_recipe);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
@@ -55,6 +56,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
         addViewItem();
     }
 
+
     public void addValue(View view){
         //Initialize Values
         addViewItem();
@@ -66,6 +68,8 @@ public class CreateRecipeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //This method is used to add ingredient items to the form allowing for the correct amount of ingredients to be inputted.
+    // Both values were decided to be strings instead of a string and a number to allow for metric values to be added aswell e.g. Tomatoes 200g instead of Tomatoes 200.
     public void addViewItem(){
         LinearLayout viewLinearLayout = (LinearLayout) findViewById(R.id.valuesLinearLayout);
         LinearLayout newLinearLayout = new LinearLayout(this);
@@ -86,7 +90,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
         viewLinearLayout.addView(newLinearLayout);
     }
 
-
+    // Submit button on click. adds data to the database
     public void submitData(View view){
         EditText recipeTitle = (EditText) findViewById(R.id.recipeTitle);
         String title = recipeTitle.getText().toString();
@@ -146,6 +150,8 @@ public class CreateRecipeActivity extends AppCompatActivity {
     public void goHome(View view){
         goToPage(MainActivity.class);
     }
+
+    // From here onwards are all functions to allow for a user to input an image from their gallery
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void openImageGallery(View view){

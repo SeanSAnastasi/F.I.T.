@@ -28,12 +28,12 @@ import java.net.HttpURLConnection;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
 
 
+    // this class is being used in order to make asynchronous API calls. Any network traffic cannot be done on the main thread
     public class DownloadTask extends AsyncTask<String, Void, String>{
 
-
+        // Does the task specified i.e. makes a request to the API
         @Override
         protected String doInBackground(String... urls) {
 
@@ -66,7 +66,7 @@ public class HomeFragment extends Fragment {
 
             return null;
         }
-
+        //Once the API returns a JSON object, the data is processed and added to the text view.
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
@@ -100,7 +100,12 @@ public class HomeFragment extends Fragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =ViewModelProviders.of(this).get(HomeViewModel.class);
+
+        // This views only purpose is to show a motivational quote of the day.
+        // The string is placed into shared preferences since the API only allows a limited number of daily calls.
+        // Adding them to shared preferences reduces the number of calls required to be made.
+        // Should a necessary license be given, the shared preferences can be removed to allow for more recent data
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("com.example.fit", Context.MODE_PRIVATE);
         String quote = sharedPreferences.getString("quote","");
