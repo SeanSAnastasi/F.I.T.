@@ -80,7 +80,7 @@ public class IngredientsFragment extends Fragment {
 
 
                 setOnClick(card, c.getInt(idIndex));
-
+                Log.i("IDS: ", ""+c.getInt(idIndex));
                 linearLayout.addView(card, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
 
@@ -107,14 +107,30 @@ public class IngredientsFragment extends Fragment {
     //This on click method is added to every card.
     // A custom on click method was required so that data can be passed to a new fragment therefore passing the necessary db data and reducing database calls
     public void setOnClick(View card, final int id){
+        Log.i("Click ID: ", ""+id);
         card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SQLiteDatabase db = getActivity().openOrCreateDatabase("FIT", Context.MODE_PRIVATE, null);
+                Cursor c = db.rawQuery("SELECT * FROM ingredients WHERE id="+id,null);
+                int titleIndex = c.getColumnIndex("title");
+                int descIndex = c.getColumnIndex("description");
+                int imgIndex = c.getColumnIndex("image");
+                c.moveToFirst();
+
+                //get image bytes
+                byte[] imageByte = c.getBlob(imgIndex);
+                //converts to bitmap
+                Bitmap this_bmp = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
+
+                String this_titleText = c.getString(titleIndex);
+                String this_description = c.getString(descIndex);
+
                 //pass data to fragment
                 IngredientDetailsFragment details = new IngredientDetailsFragment();
-                details.setTitle(titleText);
-                details.setImg(bmp);
-                details.setDescription(description);
+                details.setTitle(this_titleText);
+                details.setImg(this_bmp);
+                details.setDescription(this_description);
                 details.setId(id);
                 //inflate fragment from main activity interface
                 IMainActivity iMainActivity = (IMainActivity) getActivity();

@@ -78,6 +78,7 @@ public class IngredientDetailsFragment extends Fragment {
 
     // Uses the variable contents set by the setter functions, gets the nutritional value data (labelled with foreign key) and populates the view with the data gathered
     private void populateValues(){
+        Log.i("SET ID: ", ""+id);
         db = getActivity().openOrCreateDatabase("FIT", Context.MODE_PRIVATE, null);
         Cursor c = db.rawQuery("SELECT * FROM ingredient_values WHERE ingredient_id="+id,null);
         c.moveToFirst();

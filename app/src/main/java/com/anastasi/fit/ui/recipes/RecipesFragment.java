@@ -106,11 +106,25 @@ public class RecipesFragment extends Fragment  {
         card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SQLiteDatabase db = getActivity().openOrCreateDatabase("FIT", Context.MODE_PRIVATE, null);
+                Cursor c = db.rawQuery("SELECT * FROM recipes WHERE id="+id,null);
+                int titleIndex = c.getColumnIndex("title");
+                int cookingMethod = c.getColumnIndex("cooking_method");
+                int imgIndex = c.getColumnIndex("image");
+                c.moveToFirst();
+
+                //get image bytes
+                byte[] imageByte = c.getBlob(imgIndex);
+                //converts to bitmap
+                Bitmap this_bmp = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
+
+                String this_titleText = c.getString(titleIndex);
+                String this_cookingMethod = c.getString(cookingMethod);
                 //pass data to fragment
                 RecipeDetailsFragment details = new RecipeDetailsFragment();
-                details.setTitle(titleText);
-                details.setImg(bmp);
-                details.setCookingMethod(cookingMethod);
+                details.setTitle(this_titleText);
+                details.setImg(this_bmp);
+                details.setCookingMethod(this_cookingMethod);
                 details.setId(id);
                 //inflate fragment from main activity interface
                 IMainActivity iMainActivity = (IMainActivity) getActivity();

@@ -3,7 +3,10 @@ package com.anastasi.fit;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -168,24 +171,53 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
         if(getIntent().hasExtra("fragment")){
             String fragment = getIntent().getStringExtra("fragment");
-            String title = getIntent().getStringExtra("title");
-            String details = getIntent().getStringExtra("details");
+//            String title = getIntent().getStringExtra("title");
+//            String details = getIntent().getStringExtra("details");
             int id = getIntent().getIntExtra("id", -1);
-            Bitmap img = getIntent().getParcelableExtra("img");
+//            Bitmap img = getIntent().getParcelableExtra("img");
             if(fragment.equals("recipe")){
                 RecipeDetailsFragment detailsFragment = new RecipeDetailsFragment();
-                detailsFragment.setTitle(title);
-                detailsFragment.setImg(img);
-                detailsFragment.setCookingMethod(details);
+                SQLiteDatabase db = this.openOrCreateDatabase("FIT", Context.MODE_PRIVATE, null);
+                Cursor c = db.rawQuery("SELECT * FROM recipes WHERE id="+id,null);
+                int titleIndex = c.getColumnIndex("title");
+                int cookingMethod = c.getColumnIndex("cooking_method");
+                int imgIndex = c.getColumnIndex("image");
+                c.moveToFirst();
+
+                //get image bytes
+                byte[] imageByte = c.getBlob(imgIndex);
+                //converts to bitmap
+                Bitmap this_bmp = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
+
+                String this_titleText = c.getString(titleIndex);
+                String this_cookingMethod = c.getString(cookingMethod);
+                detailsFragment.setTitle(this_titleText);
+                detailsFragment.setImg(this_bmp);
+                detailsFragment.setCookingMethod(this_cookingMethod);
                 detailsFragment.setId(id);
                 navView.setSelectedItemId(R.id.navigation_recipes);
                 this.inflateFragment(detailsFragment, getString(R.string.fragment_recipe_details_tag), true, null);
 
             }else if(fragment.equals("ingredient")){
+                SQLiteDatabase db = this.openOrCreateDatabase("FIT", Context.MODE_PRIVATE, null);
+                Cursor c = db.rawQuery("SELECT * FROM ingredients WHERE id="+id,null);
+                int titleIndex = c.getColumnIndex("title");
+                int descIndex = c.getColumnIndex("description");
+                int imgIndex = c.getColumnIndex("image");
+                c.moveToFirst();
+
+                //get image bytes
+                byte[] imageByte = c.getBlob(imgIndex);
+                //converts to bitmap
+                Bitmap this_bmp = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
+
+                String this_titleText = c.getString(titleIndex);
+                String this_description = c.getString(descIndex);
+
                 IngredientDetailsFragment detailsFragment = new IngredientDetailsFragment();
-                detailsFragment.setTitle(title);
-                detailsFragment.setImg(img);
-                detailsFragment.setDescription(details);
+                detailsFragment.setTitle(this_titleText);
+                detailsFragment.setImg(this_bmp);
+                detailsFragment.setDescription(this_description);
                 detailsFragment.setId(id);
                 navView.setSelectedItemId(R.id.navigation_ingredients);
                 this.inflateFragment(detailsFragment, getString(R.string.fragment_recipe_details_tag), true, null);

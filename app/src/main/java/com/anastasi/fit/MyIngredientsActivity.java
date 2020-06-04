@@ -62,7 +62,6 @@ public class MyIngredientsActivity extends AppCompatActivity {
                 //get image
                 byte[] imageByte = c.getBlob(imgIndex);
                 bmp = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
-                bmp= Bitmap.createScaledBitmap(bmp, 100 ,100, true);
 
                 //create card
                 View card = vi.inflate(R.layout.card, null);
@@ -82,7 +81,7 @@ public class MyIngredientsActivity extends AppCompatActivity {
 
                 setOnClick(card, c.getInt(idIndex));
 
-                linearLayout.addView(card, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                linearLayout.addView(card, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
 
 
@@ -125,9 +124,9 @@ public class MyIngredientsActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, whereToGo);
         intent.putExtra("fragment", "ingredient");
-        intent.putExtra("title", title);
-        intent.putExtra("img", bmp);
-        intent.putExtra("details", details);
+//        intent.putExtra("title", title);
+//        intent.putExtra("img", bmp);
+//        intent.putExtra("details", details);
         intent.putExtra("id", id);
         startActivity(intent);
 
